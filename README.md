@@ -81,12 +81,10 @@ Sistema desarrollado para la materia de Teoría General de Sistemas con el objet
 
 2. **Ejecutar el script de setup** (primera vez)
    ```bash
-   # Linux/Mac
+   # Linux
    chmod +x setup.sh
    ./setup.sh
 
-   # Windows
-   .\setup.bat
    ```
 
 3. **Acceder al sistema**
@@ -210,38 +208,6 @@ El sistema cuenta con las siguientes entidades principales:
 
 ---
 
-## 📊 Datos de Ejemplo
-
-El sistema incluye datos de prueba:
-- **10 categorías** (Herramientas, Electrónica, Oficina, etc.)
-- **8 productos** de ejemplo
-- **3 proveedores**
-- **4 clientes**
-- **1 venta** de ejemplo
-
----
-
-## 🎨 Capturas de Pantalla
-
-### Dashboard
-El panel principal muestra:
-- Ventas del mes
-- Valor del inventario
-- Alertas de stock bajo
-- Accesos rápidos
-
-### Punto de Venta (POS)
-Interfaz moderna con:
-- Búsqueda en tiempo real
-- Cálculo automático
-- Múltiples métodos de pago
-
-### Gestión de Productos
-- Tabla con filtros
-- CRUD completo
-- Control de stock
-
----
 
 ## 🔧 Funcionalidades Técnicas
 
@@ -260,14 +226,6 @@ Vista (presentación)
 Cliente (navegador)
 ```
 
-### Seguridad Implementada
-- ✅ Contraseñas hasheadas (bcrypt)
-- ✅ PDO con prepared statements (anti SQL-injection)
-- ✅ Escape de HTML (anti XSS)
-- ✅ Validación de sesiones
-- ✅ Control de acceso por roles
-
----
 
 ## 🐛 Solución de Problemas Comunes
 
@@ -324,65 +282,6 @@ docker-compose exec mysql mysqldump -uinventario_user -pinventario_pass inventar
 # Restaurar backup
 docker-compose exec -T mysql mysql -uinventario_user -pinventario_pass inventario_sistema < backup.sql
 ```
-
----
-
-## 🎯 Logros del Proyecto
-
-✅ **Sistema completamente funcional**
-- Todos los módulos implementados y probados
-- Base de datos normalizada con triggers
-- Interfaz moderna y responsive
-
-✅ **Buenas prácticas aplicadas**
-- Arquitectura MVC clara
-- Código documentado
-- Validaciones en backend y frontend
-- Seguridad implementada
-
-✅ **Dockerizado y portable**
-- Fácil instalación con un comando
-- Funciona en cualquier sistema operativo
-- Incluye phpMyAdmin para gestión de BD
-
----
-
-## 📝 Conclusiones
-
-Este proyecto demuestra la implementación completa de un sistema de gestión de inventario usando tecnologías web modernas y buenas prácticas de desarrollo.
-
-### Aprendizajes Clave
-- Diseño e implementación de arquitectura MVC
-- Manejo de base de datos con triggers y procedimientos
-- Desarrollo de interfaces responsive
-- Trabajo en equipo con Git
-- Dockerización de aplicaciones
-
-### Posibles Mejoras Futuras
-- [ ] Implementar gráficos con Chart.js
-- [ ] Exportación de reportes a PDF/Excel
-- [ ] API REST para integración
-- [ ] Notificaciones por email
-- [ ] Sistema multi-sucursal
-
----
-
-## 📞 Información de Contacto
-
-**Grupo 2 - Sistema de Inventario**
-
-Universidad: [Nombre de la Universidad]
-Materia: [Nombre de la Materia]
-Docente: [Nombre del Docente]
-Semestre: [Semestre/Gestión]
-Fecha: Noviembre 2024
-
----
-
-## 🙏 Agradecimientos
-
-Agradecemos a nuestro docente [Nombre] por la guía durante el desarrollo de este proyecto, y a todos los miembros del equipo por su dedicación y esfuerzo.
-
 ---
 
 **Desarrollado con ❤️ por el Grupo 2**
