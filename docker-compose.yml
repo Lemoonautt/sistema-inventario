@@ -1,0 +1,75 @@
+services:
+  # Servicio de Base de Datos MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: inventario_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: inventario2025
+      MYSQL_DATABASE: inventario_sistema
+      MYSQL_USER: inventario_user
+      MYSQL_PASSWORD: inventario_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      - inventario_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pinventario2025"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Servicio de la Aplicación Web (PHP + Apache)
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: inventario_web
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      # Montar código para desarrollo en tiempo real
+      - ./app:/var/www/html/app
+      - ./public:/var/www/html/public
+      - ./config:/var/www/html/config
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - inventario_network
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=inventario_sistema
+      - DB_USER=inventario_user
+      - DB_PASS=inventario_pass
+      - APP_URL=http://localhost:8080/public
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: inventario_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: inventario2025
+      UPLOAD_LIMIT: 50M
+    depends_on:
+      - mysql
+    networks:
+      - inventario_network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  inventario_network:
+    driver: bridge

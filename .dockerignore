@@ -1,0 +1,12 @@
+# Archivos y directorios a ignorar al construir la imagen Docker
+.git
+.gitignore
+*.md
+README.md
+INSTALACION.md
+RESUMEN_PROYECTO.md
+INSTRUCCIONES_RAPIDAS.txt
+.env
+.env.local
+.DS_Store
+Thumbs.db
